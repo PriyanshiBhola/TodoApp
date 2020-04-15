@@ -52,7 +52,7 @@ app.get('/todos/:id', (req, res) => {
             });
             return;
     }
-    Todos.findOne({
+    Tasks.findOne({
         attributes : ['id', 'title', 'description', 'due_date', 'status', 'priority'],
         where : 
         {
@@ -67,14 +67,14 @@ app.get('/todos/:id', (req, res) => {
 app.post('/todos/:id/notes', (req, res) => {
     id = req.params.id
     data = req.body
-    data.TodoId = Number(id)
-    Todos.findAll({
+    data.taskId = Number(id)
+    Tasks.findAll({
         attributes : ['id']
     })
     .then((list) => {
         for(let item of list){
             if(item.id == id)
-            {notes.create(data).then(() => res.send(""))
+            {Notes.create(data).then(() => res.send(""))
             return
 
             }
@@ -87,11 +87,11 @@ app.post('/todos/:id/notes', (req, res) => {
 app.get('/todos/:id/notes', (req, res) => 
 {
     id = req.params.id
-    notes.findAll({
+    Notes.findAll({
         attributes : ['note'],
         where :
         {
-            TodoId : id
+            taskId : id
         }
 
     }).then((data) => res.send(data))
@@ -101,13 +101,13 @@ app.patch('/todos/:id', (req, res) =>
 {
     let Taskid = req.params.id
     let data = req.body
-    Todos.findOne({
+    Tasks.findOne({
         where : {
             id : Taskid
         }
     })
     .then((todo) => {
-        todo.due = data.due
+        todo.due_date = data.due_date
         todo.priority = data.priority
         todo.status = data.status
         todo.save().then(()=> res.send(""))
