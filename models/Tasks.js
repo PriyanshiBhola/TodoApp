@@ -18,12 +18,12 @@ module.exports = (db, Sequelize) => {
     },
     status: {
       type: Sequelize.BOOLEAN,
-      defaultValue: true,
+      defaultValue: false,
     },
     priority: {
       type: Sequelize.ENUM,
       values: ["high", "medium", "low"],
-      defaultValue: true,
+      defaultValue: "low",
       allowNull: false,
     },
   }, {});

@@ -7,6 +7,14 @@ module.exports = (db, Sequelize) => {
     },
     note: {
       type: Sequelize.STRING(5000)
+    },
+    taskId: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      references: {
+        model: 'tasks',
+        key: 'id'
+      }
     }
   }, {});
 
