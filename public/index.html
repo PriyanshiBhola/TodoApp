@@ -1,76 +1,133 @@
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="script.js"></script>
-        <script>
-        jQuery(document).on('ready', function() {
-        jQuery('form#add-new-task').bind('submit', function(event)
-        {
-        event.preventDefault();
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
 
-        var tbody = jQuery('#to-do-list > tbody');
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Task Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Features</a>
+          <a class="nav-item nav-link" href="#">Pricing</a>
+          <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row justify-content-between">
+        <h2>ToDos</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">
+          Add New Task
+        </button>
+      </div>
+      <div class="row align-items-center mt-3">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Collapsible Group Item #1
+                </button>
+              </h2>
+            </div>
         
-        tbody.append('<tr><th scope="row" style="background-color:' + this['new-task-color'].value + 
-            '"><input type="checkbox" /></th><td>' + this['new-task-date'].value +
-            '</td><td>' + this['new-task-priority'].value + '</td><td>' + this['new-task-name'].value + 
-            '</td><td>' + this['new-task-desc'].value + '</td><td>' + this['new-task-email'].value + '</td></tr>');                
-        
-        return false;
-    });
-});
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Collapsible Group Item #2
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</script>
 
-    </head>
-    <body>
-        <h1>Task Manager</h1>
-        <form id="add-new-task">
-            <label for="new-task-name">Name:</label>
-            <input id="new-task-name" name="new-task-name" type="text" required>
-            <label for="new-task-date">Date:</label>
-            <input id="new-task-date" name="new-task-date" type="date" required>                    
-            <br/>
-            <label for="new-task-priority">Priority:</label>
-            <select id="new-task-priority" name="new-task-priority">
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+    <!-- New Task Modal -->
+    <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newTaskModalLabel">Create ToDo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="createTodoForm">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title">
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" class="form-control" name="due_date">
+              </div>
+              <div class="form-group">
+                <label for="completed">Completed?</label>
+                <input type="checkbox" class="form-control" name="completed">
+              </div>
+              <div class="form-group">
+                <label for="priority">Priority</label>
+                <select class="custom-select" name="priority">
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="createTodoButton">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-              </select>
-              <label for="new-task-color"></label>
-              <input id="new-task-color" name="new-task-color" >
-            <br/>
-            <label for="new-task-desc">Description:</label>
-            <input id="new-task-desc" name="new-task-desc" type="text">
-            <br/>
-            <label for="new-task-email">Notes:</label>
-            <input id="new-task-email" name="new-task-email" type="text" multiple>
-            <br />
-            <input type="submit" value="Add new">
-        </form>
-        <table id="to-do-list">
-            <colgroup>
-                <col />
-                <col />
-                <col />
-                <col />
-                <col />
-                <col />
-            </colgroup>
-            <thead>
-                <tr>
-                    <th scope="col">Task Status</th>
-                    <th scope="col" onclick="sortTable(0)">Date</th>
-                    <th scope="col" onclick="sortTable(1)">Priority</th>                            
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Notes</th>
-                </tr>
-            </thead>
-            <tbody>                        
-            </tbody>
-        </table>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="/js/todo.js"></script>
+  </body>
 </html>
